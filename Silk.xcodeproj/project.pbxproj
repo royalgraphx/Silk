@@ -1,0 +1,620 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FB00AF1C2A1D562B00D5368A /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB00AF1B2A1D562B00D5368A /* MapController.swift */; };
+		FB93EF4E2A1DA3C10084352A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB93EF4D2A1DA3C10084352A /* Settings.swift */; };
+		FB93EF502A1DB8360084352A /* ThemePreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB93EF4F2A1DB8360084352A /* ThemePreference.swift */; };
+		FB93EF522A1DDEFE0084352A /* AddressSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB93EF512A1DDEFE0084352A /* AddressSearchManager.swift */; };
+		FB93EF542A1DDF130084352A /* AddressSuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB93EF532A1DDF130084352A /* AddressSuggestionsView.swift */; };
+		FBC988912A1CBBF500C9DE2C /* SilkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC988902A1CBBF500C9DE2C /* SilkApp.swift */; };
+		FBC988932A1CBBF500C9DE2C /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC988922A1CBBF500C9DE2C /* MainScreen.swift */; };
+		FBC988952A1CBBF700C9DE2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBC988942A1CBBF700C9DE2C /* Assets.xcassets */; };
+		FBC988982A1CBBF700C9DE2C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBC988972A1CBBF700C9DE2C /* Preview Assets.xcassets */; };
+		FBC988A22A1CBBF800C9DE2C /* SilkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC988A12A1CBBF800C9DE2C /* SilkTests.swift */; };
+		FBC988AC2A1CBBF800C9DE2C /* SilkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC988AB2A1CBBF800C9DE2C /* SilkUITests.swift */; };
+		FBC988AE2A1CBBF800C9DE2C /* SilkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC988AD2A1CBBF800C9DE2C /* SilkUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FBC9889E2A1CBBF800C9DE2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBC988852A1CBBF500C9DE2C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FBC9888C2A1CBBF500C9DE2C;
+			remoteInfo = Silk;
+		};
+		FBC988A82A1CBBF800C9DE2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBC988852A1CBBF500C9DE2C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FBC9888C2A1CBBF500C9DE2C;
+			remoteInfo = Silk;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FB00AF1B2A1D562B00D5368A /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		FB93EF4D2A1DA3C10084352A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		FB93EF4F2A1DB8360084352A /* ThemePreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePreference.swift; sourceTree = "<group>"; };
+		FB93EF512A1DDEFE0084352A /* AddressSearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchManager.swift; sourceTree = "<group>"; };
+		FB93EF532A1DDF130084352A /* AddressSuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSuggestionsView.swift; sourceTree = "<group>"; };
+		FBC9888D2A1CBBF500C9DE2C /* Silk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Silk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBC988902A1CBBF500C9DE2C /* SilkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SilkApp.swift; sourceTree = "<group>"; };
+		FBC988922A1CBBF500C9DE2C /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		FBC988942A1CBBF700C9DE2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FBC988972A1CBBF700C9DE2C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FBC9889D2A1CBBF800C9DE2C /* SilkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SilkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBC988A12A1CBBF800C9DE2C /* SilkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SilkTests.swift; sourceTree = "<group>"; };
+		FBC988A72A1CBBF800C9DE2C /* SilkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SilkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBC988AB2A1CBBF800C9DE2C /* SilkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SilkUITests.swift; sourceTree = "<group>"; };
+		FBC988AD2A1CBBF800C9DE2C /* SilkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SilkUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FBC988BA2A1CBEA300C9DE2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FBC9888A2A1CBBF500C9DE2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBC9889A2A1CBBF800C9DE2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBC988A42A1CBBF800C9DE2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FBC988842A1CBBF500C9DE2C = {
+			isa = PBXGroup;
+			children = (
+				FBC9888F2A1CBBF500C9DE2C /* Silk */,
+				FBC988A02A1CBBF800C9DE2C /* SilkTests */,
+				FBC988AA2A1CBBF800C9DE2C /* SilkUITests */,
+				FBC9888E2A1CBBF500C9DE2C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FBC9888E2A1CBBF500C9DE2C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FBC9888D2A1CBBF500C9DE2C /* Silk.app */,
+				FBC9889D2A1CBBF800C9DE2C /* SilkTests.xctest */,
+				FBC988A72A1CBBF800C9DE2C /* SilkUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FBC9888F2A1CBBF500C9DE2C /* Silk */ = {
+			isa = PBXGroup;
+			children = (
+				FBC988BA2A1CBEA300C9DE2C /* Info.plist */,
+				FBC988902A1CBBF500C9DE2C /* SilkApp.swift */,
+				FBC988922A1CBBF500C9DE2C /* MainScreen.swift */,
+				FB00AF1B2A1D562B00D5368A /* MapController.swift */,
+				FB93EF4D2A1DA3C10084352A /* Settings.swift */,
+				FB93EF4F2A1DB8360084352A /* ThemePreference.swift */,
+				FB93EF512A1DDEFE0084352A /* AddressSearchManager.swift */,
+				FB93EF532A1DDF130084352A /* AddressSuggestionsView.swift */,
+				FBC988942A1CBBF700C9DE2C /* Assets.xcassets */,
+				FBC988962A1CBBF700C9DE2C /* Preview Content */,
+			);
+			path = Silk;
+			sourceTree = "<group>";
+		};
+		FBC988962A1CBBF700C9DE2C /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FBC988972A1CBBF700C9DE2C /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FBC988A02A1CBBF800C9DE2C /* SilkTests */ = {
+			isa = PBXGroup;
+			children = (
+				FBC988A12A1CBBF800C9DE2C /* SilkTests.swift */,
+			);
+			path = SilkTests;
+			sourceTree = "<group>";
+		};
+		FBC988AA2A1CBBF800C9DE2C /* SilkUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FBC988AB2A1CBBF800C9DE2C /* SilkUITests.swift */,
+				FBC988AD2A1CBBF800C9DE2C /* SilkUITestsLaunchTests.swift */,
+			);
+			path = SilkUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FBC9888C2A1CBBF500C9DE2C /* Silk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBC988B12A1CBBF800C9DE2C /* Build configuration list for PBXNativeTarget "Silk" */;
+			buildPhases = (
+				FBC988892A1CBBF500C9DE2C /* Sources */,
+				FBC9888A2A1CBBF500C9DE2C /* Frameworks */,
+				FBC9888B2A1CBBF500C9DE2C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Silk;
+			productName = Silk;
+			productReference = FBC9888D2A1CBBF500C9DE2C /* Silk.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FBC9889C2A1CBBF800C9DE2C /* SilkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBC988B42A1CBBF800C9DE2C /* Build configuration list for PBXNativeTarget "SilkTests" */;
+			buildPhases = (
+				FBC988992A1CBBF800C9DE2C /* Sources */,
+				FBC9889A2A1CBBF800C9DE2C /* Frameworks */,
+				FBC9889B2A1CBBF800C9DE2C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FBC9889F2A1CBBF800C9DE2C /* PBXTargetDependency */,
+			);
+			name = SilkTests;
+			productName = SilkTests;
+			productReference = FBC9889D2A1CBBF800C9DE2C /* SilkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FBC988A62A1CBBF800C9DE2C /* SilkUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBC988B72A1CBBF800C9DE2C /* Build configuration list for PBXNativeTarget "SilkUITests" */;
+			buildPhases = (
+				FBC988A32A1CBBF800C9DE2C /* Sources */,
+				FBC988A42A1CBBF800C9DE2C /* Frameworks */,
+				FBC988A52A1CBBF800C9DE2C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FBC988A92A1CBBF800C9DE2C /* PBXTargetDependency */,
+			);
+			name = SilkUITests;
+			productName = SilkUITests;
+			productReference = FBC988A72A1CBBF800C9DE2C /* SilkUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FBC988852A1CBBF500C9DE2C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					FBC9888C2A1CBBF500C9DE2C = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					FBC9889C2A1CBBF800C9DE2C = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = FBC9888C2A1CBBF500C9DE2C;
+					};
+					FBC988A62A1CBBF800C9DE2C = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = FBC9888C2A1CBBF500C9DE2C;
+					};
+				};
+			};
+			buildConfigurationList = FBC988882A1CBBF500C9DE2C /* Build configuration list for PBXProject "Silk" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FBC988842A1CBBF500C9DE2C;
+			productRefGroup = FBC9888E2A1CBBF500C9DE2C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FBC9888C2A1CBBF500C9DE2C /* Silk */,
+				FBC9889C2A1CBBF800C9DE2C /* SilkTests */,
+				FBC988A62A1CBBF800C9DE2C /* SilkUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FBC9888B2A1CBBF500C9DE2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBC988982A1CBBF700C9DE2C /* Preview Assets.xcassets in Resources */,
+				FBC988952A1CBBF700C9DE2C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBC9889B2A1CBBF800C9DE2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBC988A52A1CBBF800C9DE2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FBC988892A1CBBF500C9DE2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB93EF542A1DDF130084352A /* AddressSuggestionsView.swift in Sources */,
+				FB93EF522A1DDEFE0084352A /* AddressSearchManager.swift in Sources */,
+				FBC988932A1CBBF500C9DE2C /* MainScreen.swift in Sources */,
+				FB00AF1C2A1D562B00D5368A /* MapController.swift in Sources */,
+				FB93EF4E2A1DA3C10084352A /* Settings.swift in Sources */,
+				FBC988912A1CBBF500C9DE2C /* SilkApp.swift in Sources */,
+				FB93EF502A1DB8360084352A /* ThemePreference.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBC988992A1CBBF800C9DE2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBC988A22A1CBBF800C9DE2C /* SilkTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBC988A32A1CBBF800C9DE2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBC988AC2A1CBBF800C9DE2C /* SilkUITests.swift in Sources */,
+				FBC988AE2A1CBBF800C9DE2C /* SilkUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FBC9889F2A1CBBF800C9DE2C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FBC9888C2A1CBBF500C9DE2C /* Silk */;
+			targetProxy = FBC9889E2A1CBBF800C9DE2C /* PBXContainerItemProxy */;
+		};
+		FBC988A92A1CBBF800C9DE2C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FBC9888C2A1CBBF500C9DE2C /* Silk */;
+			targetProxy = FBC988A82A1CBBF800C9DE2C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		FBC988AF2A1CBBF800C9DE2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FBC988B02A1CBBF800C9DE2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FBC988B22A1CBBF800C9DE2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Silk/Preview Content\"";
+				DEVELOPMENT_TEAM = 3TK9W239C6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Silk/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Silk Maps";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Application Needs to calculate with Current Location.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Application Needs to calculate with Current Location.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.royalgraphx.Silk;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FBC988B32A1CBBF800C9DE2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Silk/Preview Content\"";
+				DEVELOPMENT_TEAM = 3TK9W239C6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Silk/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Silk Maps";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Application Needs to calculate with Current Location.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Application Needs to calculate with Current Location.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.royalgraphx.Silk;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FBC988B52A1CBBF800C9DE2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.royalgraphx.SilkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Silk.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Silk";
+			};
+			name = Debug;
+		};
+		FBC988B62A1CBBF800C9DE2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.royalgraphx.SilkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Silk.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Silk";
+			};
+			name = Release;
+		};
+		FBC988B82A1CBBF800C9DE2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.royalgraphx.SilkUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Silk;
+			};
+			name = Debug;
+		};
+		FBC988B92A1CBBF800C9DE2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.royalgraphx.SilkUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Silk;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FBC988882A1CBBF500C9DE2C /* Build configuration list for PBXProject "Silk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBC988AF2A1CBBF800C9DE2C /* Debug */,
+				FBC988B02A1CBBF800C9DE2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBC988B12A1CBBF800C9DE2C /* Build configuration list for PBXNativeTarget "Silk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBC988B22A1CBBF800C9DE2C /* Debug */,
+				FBC988B32A1CBBF800C9DE2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBC988B42A1CBBF800C9DE2C /* Build configuration list for PBXNativeTarget "SilkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBC988B52A1CBBF800C9DE2C /* Debug */,
+				FBC988B62A1CBBF800C9DE2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBC988B72A1CBBF800C9DE2C /* Build configuration list for PBXNativeTarget "SilkUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBC988B82A1CBBF800C9DE2C /* Debug */,
+				FBC988B92A1CBBF800C9DE2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FBC988852A1CBBF500C9DE2C /* Project object */;
+}
