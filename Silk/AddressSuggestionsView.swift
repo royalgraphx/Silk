@@ -18,7 +18,10 @@ struct AddressSuggestionsView: View {
             VStack(alignment: .leading, spacing: 0) {
                 ForEach(addressSearchManager.suggestions, id: \.self) { suggestion in
                     Button(action: {
-                        textFieldText = suggestion.title // Update the text field text
+                        withAnimation {
+                            textFieldText = suggestion.title // Update the text field text
+                            addressSearchManager.suggestions = [] // Clear the suggestions after selecting one
+                        }
                     }) {
                         HStack {
                             VStack(alignment: .leading, spacing: 8) {
@@ -46,10 +49,11 @@ struct AddressSuggestionsView: View {
             .padding(.vertical, 8)
             .background(colorScheme == .dark ? Color.gray.opacity(0.2) : Color.gray.opacity(0.5))
             .cornerRadius(8)
-            .shadow(color: .gray, radius: 2, x: 0, y: 2)
             .padding(.top, 8)
             .onDisappear {
-                addressSearchManager.suggestions = [] // Clear the suggestions when the view disappears
+                if textFieldText.isEmpty {
+                    addressSearchManager.suggestions = [] // Clear the suggestions when the view disappears and the text field is empty
+                }
             }
         } else {
             EmptyView() // Display nothing if there are no suggestions or the text field is empty

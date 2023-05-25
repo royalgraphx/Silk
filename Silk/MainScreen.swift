@@ -21,13 +21,17 @@ struct MainScreen: View {
     @Environment(\.colorScheme) var colorScheme
     @State private var isMapFullScreen = false
     @State private var isShowingSettings = false
-    @State private var addresses: [String] = [""]
+    @State private var addresses: [String] = Array(repeating: "", count: 1)
     @State private var isScrollingUp = false
     @State private var scrollOffset: CGFloat = 0
     @State private var currentHour: Int = Calendar.current.component(.hour, from: Date())
     
-    @StateObject private var addressSearchManager = AddressSearchManager()
-    @State private var textFieldText: String = "" // Add this line
+    @StateObject private var addressSearchManager1 = AddressSearchManager()
+    @StateObject private var addressSearchManager2 = AddressSearchManager()
+    @StateObject private var addressSearchManager3 = AddressSearchManager()
+    @StateObject private var addressSearchManager4 = AddressSearchManager()
+    @StateObject private var addressSearchManager5 = AddressSearchManager()
+    @StateObject private var addressSearchManager6 = AddressSearchManager()
     
     var body: some View {
         NavigationView {
@@ -91,42 +95,46 @@ struct MainScreen: View {
                                     }
                                 
                                 ForEach(addresses.indices, id: \.self) { index in
-                                            HStack {
-                                                TextField("Enter Address...", text: $addresses[index])
-                                                    .padding()
-                                                    .background(colorScheme == .dark ? Color.gray.opacity(0.2) : Color.gray.opacity(0.5))
-                                                    .foregroundColor(colorScheme == .dark ? .white : .black)
-                                                    .cornerRadius(8)
-                                                    .frame(height: 60)
-                                                    .padding(.horizontal, 16)
-                                                    .onChange(of: addresses[index]) { query in
-                                                        addressSearchManager.searchCompleter.queryFragment = query
-                                                    }
-                                                
-                                                if index == addresses.indices.last {
-                                                    Button(action: {
-                                                        addresses.append("")
-                                                        scrollViewProxy.scrollTo("address\(addresses.count - 1)", anchor: .bottom)
-                                                    }) {
-                                                        Image(systemName: "plus")
-                                                            .foregroundColor(.gray)
-                                                    }
-                                                    .padding(.trailing, 16)
-                                                } else {
-                                                    Button(action: {
-                                                        addresses.remove(at: index)
-                                                    }) {
-                                                        Image(systemName: "minus")
-                                                            .foregroundColor(.gray)
-                                                    }
-                                                    .padding(.trailing, 16)
-                                                }
-                                            }
-                                            .id("address\(index)")
-                                            
-                                            AddressSuggestionsView(addressSearchManager: addressSearchManager, textFieldText: $addresses[index]) // Pass the binding to AddressSuggestionsView
-                                                .padding(.horizontal, 16)
+                                    HStack {
+                                        if index >= 5 {
                                         }
+                                        TextField("Enter Address...", text: $addresses[index])
+                                            .padding()
+                                            .background(colorScheme == .dark ? Color.gray.opacity(0.2) : Color.gray.opacity(0.5))
+                                            .foregroundColor(colorScheme == .dark ? .white : .black)
+                                            .cornerRadius(8)
+                                            .frame(height: 60)
+                                            .padding(.horizontal, 16)
+                                            .onChange(of: addresses[index]) { query in
+                                                getAddressSearchManager(forIndex: index).searchCompleter.queryFragment = query
+                                            }
+                                        
+                                        if index == addresses.indices.last && index < 5 { // Display "+" icon for all text boxes except the last one
+                                            Button(action: {
+                                                addresses.append("")
+                                                scrollViewProxy.scrollTo("address\(addresses.count - 1)", anchor: .bottom)
+                                            }) {
+                                                Image(systemName: "plus")
+                                                    .foregroundColor(.gray)
+                                            }
+                                            .padding(.trailing, 30)
+                                        } else if index == addresses.indices.last && index >= 5 { // Display no icon for the last text box
+                                        } else {
+                                            Button(action: {
+                                                addresses.remove(at: index)
+                                            }) {
+                                                Image(systemName: "minus")
+                                                    .foregroundColor(.gray)
+                                            }
+                                            .padding(.trailing, 30)
+                                        }
+                                    }
+                                    .id("address\(index)")
+                                    
+                                    AddressSuggestionsView(addressSearchManager: getAddressSearchManager(forIndex: index), textFieldText: $addresses[index])
+                                        .padding(.horizontal, 16)
+                                        .id("suggestions\(index)") // Add an ID to the suggestions view
+                                }
                                 
                                 Button(action: {
                                     // Handle route action
@@ -180,6 +188,26 @@ struct MainScreen: View {
             return "⛅ Good afternoon, drive safe!"
         } else {
             return "🦉 Drive safe, Night Owl!"
+        }
+    }
+    
+    // Helper function to get the appropriate AddressSearchManager for each text box
+    func getAddressSearchManager(forIndex index: Int) -> AddressSearchManager {
+        switch index {
+        case 0:
+            return addressSearchManager1
+        case 1:
+            return addressSearchManager2
+        case 2:
+            return addressSearchManager3
+        case 3:
+            return addressSearchManager4
+        case 4:
+            return addressSearchManager5
+        case 5:
+            return addressSearchManager6
+        default:
+            fatalError("Invalid index")
         }
     }
 }
