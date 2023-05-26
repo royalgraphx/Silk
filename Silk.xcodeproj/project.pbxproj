@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		FB00AF1C2A1D562B00D5368A /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB00AF1B2A1D562B00D5368A /* MapController.swift */; };
+		FB90A10B2A1F4D7600EE4985 /* RouteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB90A10A2A1F4D7600EE4985 /* RouteManager.swift */; };
+		FB90A10D2A1F74AA00EE4985 /* RouteCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB90A10C2A1F74AA00EE4985 /* RouteCalculation.swift */; };
 		FB93EF4E2A1DA3C10084352A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB93EF4D2A1DA3C10084352A /* Settings.swift */; };
 		FB93EF502A1DB8360084352A /* ThemePreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB93EF4F2A1DB8360084352A /* ThemePreference.swift */; };
 		FB93EF522A1DDEFE0084352A /* AddressSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB93EF512A1DDEFE0084352A /* AddressSearchManager.swift */; };
@@ -40,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		FB00AF1B2A1D562B00D5368A /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		FB90A10A2A1F4D7600EE4985 /* RouteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteManager.swift; sourceTree = "<group>"; };
+		FB90A10C2A1F74AA00EE4985 /* RouteCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCalculation.swift; sourceTree = "<group>"; };
 		FB93EF4D2A1DA3C10084352A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		FB93EF4F2A1DB8360084352A /* ThemePreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePreference.swift; sourceTree = "<group>"; };
 		FB93EF512A1DDEFE0084352A /* AddressSearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSearchManager.swift; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 				FB93EF4F2A1DB8360084352A /* ThemePreference.swift */,
 				FB93EF512A1DDEFE0084352A /* AddressSearchManager.swift */,
 				FB93EF532A1DDF130084352A /* AddressSuggestionsView.swift */,
+				FB90A10A2A1F4D7600EE4985 /* RouteManager.swift */,
+				FB90A10C2A1F74AA00EE4985 /* RouteCalculation.swift */,
 				FBC988942A1CBBF700C9DE2C /* Assets.xcassets */,
 				FBC988962A1CBBF700C9DE2C /* Preview Content */,
 			);
@@ -277,10 +283,12 @@
 				FB93EF542A1DDF130084352A /* AddressSuggestionsView.swift in Sources */,
 				FB93EF522A1DDEFE0084352A /* AddressSearchManager.swift in Sources */,
 				FBC988932A1CBBF500C9DE2C /* MainScreen.swift in Sources */,
+				FB90A10D2A1F74AA00EE4985 /* RouteCalculation.swift in Sources */,
 				FB00AF1C2A1D562B00D5368A /* MapController.swift in Sources */,
 				FB93EF4E2A1DA3C10084352A /* Settings.swift in Sources */,
 				FBC988912A1CBBF500C9DE2C /* SilkApp.swift in Sources */,
 				FB93EF502A1DB8360084352A /* ThemePreference.swift in Sources */,
+				FB90A10B2A1F4D7600EE4985 /* RouteManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

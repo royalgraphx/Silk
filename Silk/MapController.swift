@@ -2,7 +2,7 @@
 //  MapController.swift
 //  Silk
 //
-//  Created by RoyalGraphX on 5/23/23.
+//  Created by RoyalGraphX on 5/25/23.
 //  Assisted by ChatGPT
 //
 
@@ -10,9 +10,10 @@ import SwiftUI
 import MapKit
 import CoreLocation
 
-struct ContentView: View {
+struct MapController: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var routeManager: RouteManager
 
     var body: some View {
         VStack {
@@ -45,11 +46,8 @@ struct ContentView: View {
                 }
                 .foregroundColor(.gray)
             }
-
             Spacer()
-            Spacer()
-            
-            MapView()
+            MapView(routeManager: routeManager)
                 .edgesIgnoringSafeArea(.all)
         }
         .background(colorScheme == .dark ? Color.black : Color.white)
@@ -57,14 +55,14 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MapController_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MapController(routeManager: RouteManager())
     }
 }
 
 struct MapView: UIViewRepresentable {
-    @State private var region = MKCoordinateRegion()
+    @ObservedObject var routeManager: RouteManager
     private let locationManager = CLLocationManager()
 
     func makeUIView(context: Context) -> MKMapView {
@@ -76,43 +74,44 @@ struct MapView: UIViewRepresentable {
     }
 
     func updateUIView(_ view: MKMapView, context: Context) {
-        view.setRegion(region, animated: true)
-    }
+        // Reset the old route overlay
+        if let oldRoute = context.coordinator.route {
+            view.removeOverlay(oldRoute.polyline)
+        }
 
-    func setupLocationManager(with context: Context) {
-        locationManager.delegate = context.coordinator
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        // Add the new route overlay
+        if let route = routeManager.route {
+            context.coordinator.route = route
+            view.addOverlay(route.polyline, level: .aboveRoads)
 
-        // Request permission
-        locationManager.requestWhenInUseAuthorization()
-
-        // Start updating location when authorization status changes
-        locationManager.startUpdatingLocation()
+            // Zoom the map to the route
+            view.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 70.0, left: 40.0, bottom: 50.0, right: 20.0), animated: true)
+        }
     }
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
 
-    class Coordinator: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
+    func setupLocationManager(with context: Context) {
+        locationManager.delegate = context.coordinator
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+
+    class Coordinator: NSObject, MKMapViewDelegate, CLLocationManagerDelegate {
         var parent: MapView
+        var route: MKRoute?
 
         init(_ parent: MapView) {
             self.parent = parent
-            super.init()
         }
 
         func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
             switch manager.authorizationStatus {
             case .authorizedWhenInUse, .authorizedAlways:
-                parent.locationManager.startUpdatingLocation()
-            case .denied, .restricted:
-                // Handle denied or restricted authorization
-                break
-            case .notDetermined:
-                // Handle not determined authorization
-                break
-            @unknown default:
+                manager.startUpdatingLocation()
+            default:
                 break
             }
         }
@@ -121,13 +120,16 @@ struct MapView: UIViewRepresentable {
             if let location = locations.last {
                 print("Received location update: \(location.coordinate.latitude), \(location.coordinate.longitude)")
                 let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005) // Adjust the values to control the zoom level
-                parent.region = MKCoordinateRegion(center: location.coordinate, span: span)
+                _ = MKCoordinateRegion(center: location.coordinate, span: span)
                 parent.locationManager.stopUpdatingLocation()
             }
         }
 
-        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-            print("Location manager error: \(error.localizedDescription)")
+        func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            renderer.strokeColor = .systemBlue
+            renderer.lineWidth = 3
+            return renderer
         }
     }
 }

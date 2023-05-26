@@ -32,6 +32,7 @@ struct MainScreen: View {
     @StateObject private var addressSearchManager4 = AddressSearchManager()
     @StateObject private var addressSearchManager5 = AddressSearchManager()
     @StateObject private var addressSearchManager6 = AddressSearchManager()
+    @StateObject private var routeManager = RouteManager()
     
     var body: some View {
         NavigationView {
@@ -80,7 +81,7 @@ struct MainScreen: View {
                                 }
                                 .padding(.leading, 16)
                                 
-                                MapView()
+                                MapView(routeManager: routeManager)
                                     .frame(height: 200)
                                     .cornerRadius(16)
                                     .padding(.horizontal, 16)
@@ -91,7 +92,7 @@ struct MainScreen: View {
                                     }
                                     .foregroundColor(colorScheme == .dark ? .white : .black)
                                     .fullScreenCover(isPresented: $isMapFullScreen) {
-                                        ContentView()
+                                        MapController(routeManager: routeManager)
                                     }
                                 
                                 ForEach(addresses.indices, id: \.self) { index in
@@ -137,7 +138,10 @@ struct MainScreen: View {
                                 }
                                 
                                 Button(action: {
-                                    // Handle route action
+                                    // Only process if we have at least one address
+                                    if let firstAddress = addresses.first, !firstAddress.isEmpty {
+                                        routeManager.routeToFirstAddress(address: firstAddress)
+                                    }
                                 }) {
                                     Text("Route!")
                                         .font(.headline)
