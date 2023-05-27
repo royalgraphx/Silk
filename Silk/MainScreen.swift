@@ -69,7 +69,7 @@ struct MainScreen: View {
                                         Settings()
                                     }
                                 }
-                                
+
                                 // Dynamic greeting text
                                 HStack {
                                     Text(determineGreeting())
@@ -80,7 +80,7 @@ struct MainScreen: View {
                                     Spacer()
                                 }
                                 .padding(.leading, 16)
-                                
+
                                 MapView(routeManager: routeManager)
                                     .frame(height: 200)
                                     .cornerRadius(16)
@@ -94,11 +94,9 @@ struct MainScreen: View {
                                     .fullScreenCover(isPresented: $isMapFullScreen) {
                                         MapController(routeManager: routeManager)
                                     }
-                                
+
                                 ForEach(addresses.indices, id: \.self) { index in
                                     HStack {
-                                        if index >= 5 {
-                                        }
                                         TextField("Enter Address...", text: $addresses[index])
                                             .padding()
                                             .background(colorScheme == .dark ? Color.gray.opacity(0.2) : Color.gray.opacity(0.5))
@@ -109,7 +107,7 @@ struct MainScreen: View {
                                             .onChange(of: addresses[index]) { query in
                                                 getAddressSearchManager(forIndex: index).searchCompleter.queryFragment = query
                                             }
-                                        
+
                                         if index == addresses.indices.last && index < 5 { // Display "+" icon for all text boxes except the last one
                                             Button(action: {
                                                 addresses.append("")
@@ -131,16 +129,26 @@ struct MainScreen: View {
                                         }
                                     }
                                     .id("address\(index)")
-                                    
+
                                     AddressSuggestionsView(addressSearchManager: getAddressSearchManager(forIndex: index), textFieldText: $addresses[index])
                                         .padding(.horizontal, 16)
                                         .id("suggestions\(index)") // Add an ID to the suggestions view
                                 }
-                                
+
                                 Button(action: {
-                                    // Only process if we have at least one address
-                                    if let firstAddress = addresses.first, !firstAddress.isEmpty {
-                                        routeManager.routeToFirstAddress(address: firstAddress)
+                                    // Validate addresses first
+                                    let validAddresses = addresses.filter { !$0.isEmpty }
+                                    if validAddresses.isEmpty {
+                                        print("No valid addresses provided.")
+                                    } else {
+                                        guard let currentLocation = routeManager.location else {
+                                            print("Could not get current location.")
+                                            return
+                                        }
+                                        let currentAddress = "\(currentLocation.coordinate.latitude),\(currentLocation.coordinate.longitude)"
+                                        var allAddresses = validAddresses
+                                        allAddresses.insert(currentAddress, at: 0)
+                                        routeManager.routeBetweenAddresses(addresses: allAddresses)
                                     }
                                 }) {
                                     Text("Route!")
@@ -153,7 +161,7 @@ struct MainScreen: View {
                                         .cornerRadius(8)
                                         .padding(.horizontal, 16)
                                 }
-                                
+
                                 Spacer()
                             }
                             .padding(.bottom, 16)
@@ -176,15 +184,15 @@ struct MainScreen: View {
                     }
                     .background(GeometryReader { innerGeometry in
                         Color.clear
-                            .preference(key: ScrollOffsetPreferenceKey.self, value: innerGeometry.frame(in: .named("scroll")).minY)
+                            .preference(key: ScrollOffsetPreferenceKey.self, value: innerGeometry.frame(in: .named("scroll")).origin.y)
                     })
                 }
             }
-            .edgesIgnoringSafeArea(.all)
+            .ignoresSafeArea()
+            .background(colorScheme == .dark ? Color.black : Color.white)
         }
     }
-    
-    // This function will determine the greeting based on the current time
+
     func determineGreeting() -> String {
         if currentHour >= 5 && currentHour < 12 {
             return "🌞 Good morning, drive safe!"
@@ -194,8 +202,7 @@ struct MainScreen: View {
             return "🦉 Drive safe, Night Owl!"
         }
     }
-    
-    // Helper function to get the appropriate AddressSearchManager for each text box
+
     func getAddressSearchManager(forIndex index: Int) -> AddressSearchManager {
         switch index {
         case 0:
@@ -211,7 +218,13 @@ struct MainScreen: View {
         case 5:
             return addressSearchManager6
         default:
-            fatalError("Invalid index")
+            fatalError("Unexpected index.")
         }
+    }
+}
+
+struct MainScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        MainScreen()
     }
 }

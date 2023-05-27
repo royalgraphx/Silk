@@ -64,7 +64,7 @@ struct MapController_Previews: PreviewProvider {
 struct MapView: UIViewRepresentable {
     @ObservedObject var routeManager: RouteManager
     private let locationManager = CLLocationManager()
-
+    
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
@@ -72,41 +72,44 @@ struct MapView: UIViewRepresentable {
         setupLocationManager(with: context)
         return mapView
     }
-
+    
     func updateUIView(_ view: MKMapView, context: Context) {
-        // Reset the old route overlay
-        if let oldRoute = context.coordinator.route {
-            view.removeOverlay(oldRoute.polyline)
-        }
-
-        // Add the new route overlay
-        if let route = routeManager.route {
-            context.coordinator.route = route
+        // Remove old route overlays
+        view.removeOverlays(view.overlays)
+        
+        // Add the new route overlays
+        for route in routeManager.routes {
             view.addOverlay(route.polyline, level: .aboveRoads)
-
-            // Zoom the map to the route
-            view.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 70.0, left: 40.0, bottom: 50.0, right: 20.0), animated: true)
+        }
+        
+        // Zoom the map to fit all route overlays
+        if let firstRoute = routeManager.routes.first {
+            var boundingMapRect = firstRoute.polyline.boundingMapRect
+            for route in routeManager.routes.dropFirst() {
+                boundingMapRect = boundingMapRect.union(route.polyline.boundingMapRect)
+            }
+            
+            view.setVisibleMapRect(boundingMapRect, edgePadding: UIEdgeInsets(top: 70.0, left: 40.0, bottom: 50.0, right: 20.0), animated: true)
         }
     }
-
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
-
+    
     func setupLocationManager(with context: Context) {
         locationManager.delegate = context.coordinator
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
-
+    
     class Coordinator: NSObject, MKMapViewDelegate, CLLocationManagerDelegate {
         var parent: MapView
-        var route: MKRoute?
-
+        
         init(_ parent: MapView) {
             self.parent = parent
         }
-
+        
         func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
             switch manager.authorizationStatus {
             case .authorizedWhenInUse, .authorizedAlways:
@@ -115,7 +118,7 @@ struct MapView: UIViewRepresentable {
                 break
             }
         }
-
+        
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             if let location = locations.last {
                 print("Received location update: \(location.coordinate.latitude), \(location.coordinate.longitude)")
@@ -124,7 +127,7 @@ struct MapView: UIViewRepresentable {
                 parent.locationManager.stopUpdatingLocation()
             }
         }
-
+        
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             let renderer = MKPolylineRenderer(overlay: overlay)
             renderer.strokeColor = .systemBlue
