@@ -11,6 +11,7 @@ import CoreLocation
 
 class RouteManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var routes: [MKRoute] = []
+    @Published var addresses: [String] = []
     @Published var location: CLLocation?
 
     private let locationManager = CLLocationManager()
@@ -46,6 +47,9 @@ class RouteManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         // Clear existing routes
         clearRoutes()
+        
+        // Set the addresses
+        self.addresses = addresses
 
         let geocoder = CLGeocoder()
         

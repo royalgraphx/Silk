@@ -63,71 +63,99 @@ struct MapController_Previews: PreviewProvider {
 
 struct MapView: UIViewRepresentable {
     @ObservedObject var routeManager: RouteManager
-    private let locationManager = CLLocationManager()
-    
+
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         mapView.showsUserLocation = true
-        setupLocationManager(with: context)
         return mapView
     }
-    
+
     func updateUIView(_ view: MKMapView, context: Context) {
         // Remove old route overlays
         view.removeOverlays(view.overlays)
-        
+
         // Add the new route overlays
         for route in routeManager.routes {
             view.addOverlay(route.polyline, level: .aboveRoads)
         }
-        
-        // Zoom the map to fit all route overlays
+
+        // Remove old markers
+        view.removeAnnotations(view.annotations)
+
+        // Add new markers
+        let addresses = routeManager.addresses
+        for (index, address) in addresses.enumerated() {
+            geocodeAddress(address) { placemark in
+                if let placemark = placemark {
+                    let marker = MKPointAnnotation()
+                    marker.coordinate = placemark.location!.coordinate
+                    marker.title = "Stop \(index + 0)"
+                    view.addAnnotation(marker)
+                }
+            }
+        }
+
+        // Zoom the map to fit all route overlays and markers
         if let firstRoute = routeManager.routes.first {
             var boundingMapRect = firstRoute.polyline.boundingMapRect
             for route in routeManager.routes.dropFirst() {
                 boundingMapRect = boundingMapRect.union(route.polyline.boundingMapRect)
             }
-            
+            for address in addresses {
+                geocodeAddress(address) { placemark in
+                    if let location = placemark?.location {
+                        let mapPoint = MKMapPoint(location.coordinate)
+                        let mapRect = MKMapRect(origin: mapPoint, size: MKMapSize(width: 0, height: 0))
+                        boundingMapRect = boundingMapRect.union(mapRect)
+                    }
+                }
+            }
             view.setVisibleMapRect(boundingMapRect, edgePadding: UIEdgeInsets(top: 70.0, left: 40.0, bottom: 50.0, right: 20.0), animated: true)
         }
     }
-    
+
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
-    
-    func setupLocationManager(with context: Context) {
-        locationManager.delegate = context.coordinator
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+
+    private func geocodeAddress(_ address: String, completion: @escaping (CLPlacemark?) -> Void) {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(address) { placemarks, error in
+            if let placemark = placemarks?.first {
+                completion(placemark)
+            } else {
+                completion(nil)
+            }
+        }
     }
-    
-    class Coordinator: NSObject, MKMapViewDelegate, CLLocationManagerDelegate {
+
+    class Coordinator: NSObject, MKMapViewDelegate {
         var parent: MapView
-        
+
         init(_ parent: MapView) {
             self.parent = parent
         }
-        
-        func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-            switch manager.authorizationStatus {
-            case .authorizedWhenInUse, .authorizedAlways:
-                manager.startUpdatingLocation()
-            default:
-                break
+
+        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            guard annotation is MKPointAnnotation else {
+                return nil
             }
-        }
-        
-        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            if let location = locations.last {
-                print("Received location update: \(location.coordinate.latitude), \(location.coordinate.longitude)")
-                let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005) // Adjust the values to control the zoom level
-                _ = MKCoordinateRegion(center: location.coordinate, span: span)
-                parent.locationManager.stopUpdatingLocation()
+
+            let identifier = "marker"
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
+            if annotationView == nil {
+                annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            } else {
+                annotationView?.annotation = annotation
             }
+
+            // Customize the marker view
+            annotationView?.markerTintColor = .darkGray
+
+            return annotationView
         }
-        
+
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             let renderer = MKPolylineRenderer(overlay: overlay)
             renderer.strokeColor = .systemBlue
